@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,7 +40,7 @@ jobs:
       run: |
         echo "${{ secrets.KUBECONFIG_EKS }}" > ~/.kube/config
         export KUBECONFIG=~/.kube/config
-        
+
     - name: Set permissions on kubeconfig
       run: chmod 600 ~/.kube/config
 
