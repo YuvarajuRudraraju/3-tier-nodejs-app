@@ -5,7 +5,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,8 +44,11 @@ jobs:
     - name: Set permissions on kubeconfig
       run: chmod 600 ~/.kube/config
 
+    - name: Tail kubeconfig
+      run: tail ~/.kube/config
+      
     - name: Verify Kubernetes connection
-      run: kubectl get nodes
+      run: kubectl get -all
     
     - name: Deploy to Kubernetes
       env:
